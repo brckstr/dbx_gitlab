@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools>=61.0", "databricks-cli>=0.16.8"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "dbx_gitlab"
+version = "0.0.1"
+authors = [
+  { name="Gary Burgett", email="gary.burgett@databricks.com" },
+]
+description = "Gitlab integration for private Databricks deployments"
+readme = "README.md"
+requires-python = ">=3.7"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]

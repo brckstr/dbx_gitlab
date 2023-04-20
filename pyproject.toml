@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "dbx_gitlab"
-version = "0.0.1"
+version = "0.0.2"
 authors = [
   { name="Gary Burgett", email="gary.burgett@databricks.com" },
 ]

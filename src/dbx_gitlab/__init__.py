@@ -8,9 +8,16 @@ from zipfile import ZipFile
 from databricks_cli.sdk import ApiClient
 from databricks_cli.workspace.api import WorkspaceApi
 from databricks_cli.workspace.types import WorkspaceLanguage
+from pyspark.dbutils import DBUtils
+from pyspark.sql import SparkSession
 
 from io import StringIO 
 import sys
+
+
+spark = SparkSession.builder.getOrCreate()
+dbutils = DBUtils(spark)
+
 
 class capture_out(list):
   def __enter__(self):
@@ -78,8 +85,9 @@ class GitConnection:
     folder_name = self.FOLDER_WS_PATH.split("/")[-1]
     gtoken = b64decode(self.GITLAB_TOKEN).decode("utf-8")
     repo_url_wtoken = f"//gitlab-ci-token:{gtoken}@".join(self.repo.split("//"))
-    result = subprocess.run(["git", "clone", repo_url_wtoken, folder_name])
-    # print(result.stdout)
+    result = subprocess.run(["git", "clone", repo_url_wtoken, folder_name], capture_output=True, text=True)
+    if result.stderr:
+      print(result.stderr)
     print("Pulled remote repository!", end='\x1b \r')
     os.chdir(self.FOLDER_FILE_PATH)
       
@@ -103,7 +111,7 @@ class GitConnection:
     output = subprocess.run(["git", "status"], capture_output=True, text=True)
     self.parse_status(output.stdout)
     # print(output.stdout)
-    displayHTML("<p><pre>%s</pre></p>" % output.stdout)
+    self.display_html("<p><pre>%s</pre></p>" % output.stdout)
     # print(output.stderr)
     
   def parse_status(self, status_output):
@@ -184,6 +192,24 @@ class GitConnection:
               workspace.import_workspace(cur_src, cur_dst, language, file_format, True)
             else:
               pass
+
+  def display_html(self, html):
+    """
+    Use databricks displayHTML from an external package
+    
+    Args:
+    - html : html document to display
+    """
+    import inspect
+    for frame in inspect.getouterframes(inspect.currentframe()):
+        global_names = set(frame.frame.f_globals)
+        # Use multiple functions to reduce risk of mismatch
+        if all(v in global_names for v in ["displayHTML", "display", "spark"]):
+            return frame.frame.f_globals["displayHTML"](html)
+    raise EnvironmentError(
+        "Unable to detect displayHTML function"
+    )
+
 
   def action_commit(self):
     self.check_target_dir()

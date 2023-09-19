@@ -69,3 +69,7 @@ GITLAB_TOKEN = "_ENCODED_VALUE_"
 # COMMAND ----------
 
 dbutils.notebook.exit(GITLAB_TOKEN)
+
+# COMMAND ----------
+
+# No longer needed

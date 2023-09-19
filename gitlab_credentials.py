@@ -3,21 +3,21 @@
 # MAGIC <p align="center" width="100%">
 # MAGIC   <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQaqtlHFs5x2qtMXMnBj8JELl45RJ1qexRdBn-PuXhs&s" />
 # MAGIC </p>
-# MAGIC 
+# MAGIC
 # MAGIC # Your Gitlab Credentials
-# MAGIC 
+# MAGIC
 # MAGIC ## Clone this Notebook
-# MAGIC 
+# MAGIC
 # MAGIC The Git integration expects your credentials to be stored in the root of your user directory (ie. /Users/<user_id>/gitlab_creds)
-# MAGIC 
+# MAGIC
 # MAGIC  1. From the "File" menu above select "Clone"
 # MAGIC  2. Select the "Users" folder and then your personal folder, which should be the first one at the top.
 # MAGIC  3. Be sure to remove the " (1)" that is automatically added to the filename and click the "Clone" button.
 # MAGIC  
 # MAGIC ## Creating a Personal Access Token
-# MAGIC 
+# MAGIC
 # MAGIC You need to go to the Gitlab UI to generate a new personal access token.
-# MAGIC 
+# MAGIC
 # MAGIC 1. In the top-right corner, select your avatar.
 # MAGIC 2. Select Edit profile.
 # MAGIC 3. On the left sidebar, select Access Tokens.
@@ -25,11 +25,11 @@
 # MAGIC 5. Select the desired scopes. (read_repository, write_repository)
 # MAGIC 6. Select Create personal access token.
 # MAGIC 7. Copy your personal access token for use in the next step.
-# MAGIC 
+# MAGIC
 # MAGIC ## Entering your Personal Access Token
-# MAGIC 
+# MAGIC
 # MAGIC Finally, you will encode your token before entering it in the notebook, so that it doesn't get stored in cleartext.
-# MAGIC 
+# MAGIC
 # MAGIC  1. Enter your token in the textbox in the cell below and click the "Encode" button.
 # MAGIC  2. Copy the encoded value that is returned, and paste in the following cell over \_ENCODED_VALUE\_.
 # MAGIC  
@@ -73,3 +73,4 @@ dbutils.notebook.exit(GITLAB_TOKEN)
 # COMMAND ----------
 
 # No longer needed
+# At all

@@ -20,3 +20,5 @@ Gitlab integration for private Databricks deployments
  2. Clone the "gitlab_actions" notebook from the workspace root into your new project folder.
  3. Update the values in the provided input boxes to select the git action you want to execute, the target repository you want to interact with, and other options relevant to your chosen action.
  4. Click the "Run all" button to execute the git action. 
+
+Testing
